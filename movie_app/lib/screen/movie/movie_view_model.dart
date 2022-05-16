@@ -9,7 +9,7 @@ class MovieViewModel with ChangeNotifier {
   getCurrentPlayMovies(int id) async {
     if (id == 0) {
       final c = await ApiService.getNowPlayingMovie();
-      print('Total Movie ${c.length}');
+      // print('Total Movie ${c.length}');
       _movies = c;
     } else {
       final c = await ApiService.getMovieByGenre(id);

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "231329374348",
+    "project_id": "cineminfo",
+    "storage_bucket": "cineminfo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:231329374348:android:100a90056bfa60096c1ba9",
+        "android_client_info": {
+          "package_name": "com.example.movie_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "231329374348-bdaaa0374qrdrs1eqlaicar2uhikrmju.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.movie_app",
+            "certificate_hash": "62e699a6393d8ab07d33b1b369dde0e9f35433f4"
+          }
+        },
+        {
+          "client_id": "231329374348-qu5prlkuo043qglff0b8i7b49ehq3qvi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZ6eUNamIO7a3-bZZvpfuOxLsQyGLAUiI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "231329374348-qu5prlkuo043qglff0b8i7b49ehq3qvi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
