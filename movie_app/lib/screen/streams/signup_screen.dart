@@ -371,6 +371,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
     userModel.name = nameEditingController.text;
     userModel.password = passwordEditingController.text;
     userModel.id = user.uid;
+    userModel.movieWatch = [];
+    userModel.movieDropped = [];
+    userModel.movieFinish = [];
 
     await firebaseFirestore
         .collection("users")

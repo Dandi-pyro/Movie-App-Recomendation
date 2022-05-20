@@ -39,7 +39,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     return Scaffold(
       backgroundColor: hexStringToColor('333333'),
       appBar: AppBar(
-        title: const Text('Edit Profile'),
+        title: const Text('Change Password'),
         backgroundColor: hexStringToColor('333333'),
       ),
       body: Padding(

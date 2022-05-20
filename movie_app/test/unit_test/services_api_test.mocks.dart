@@ -79,4 +79,9 @@ class MockApiService extends _i1.Mock implements _i4.ApiService {
       (super.noSuchMethod(Invocation.method(#getCastList, [movieId]),
               returnValue: Future<List<_i9.Cast>>.value(<_i9.Cast>[]))
           as _i5.Future<List<_i9.Cast>>);
+  @override
+  _i5.Future<List<_i6.Movie>> searchMovie(String? query) =>
+      (super.noSuchMethod(Invocation.method(#searchMovie, [query]),
+              returnValue: Future<List<_i6.Movie>>.value(<_i6.Movie>[]))
+          as _i5.Future<List<_i6.Movie>>);
 }

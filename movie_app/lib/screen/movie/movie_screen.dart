@@ -126,7 +126,7 @@ class _MovieScreenState extends State<MovieScreen> {
                                     left: 15,
                                   ),
                                   child: Text(
-                                    movieProvider.movies[index].title
+                                    movieProvider.movies[index].title!
                                         .toUpperCase(),
                                     style: const TextStyle(
                                       color: Colors.white,

@@ -9,7 +9,7 @@ class Cast {
   final String? profilePath;
   final String? character;
 
-  Cast({required this.name, required this.profilePath, required this.character});
+  Cast({this.name, this.profilePath, this.character});
 
   factory Cast.fromJson(dynamic json) {
     return Cast(

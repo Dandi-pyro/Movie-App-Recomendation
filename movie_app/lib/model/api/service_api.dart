@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:movie_app/model/cast_list.dart';
 import 'package:movie_app/model/genre.dart';
@@ -6,7 +5,6 @@ import 'package:movie_app/model/movie_detail.dart';
 import 'package:movie_app/model/movie_image.dart';
 import 'package:movie_app/model/movie_model.dart';
 import 'package:movie_app/model/person.dart';
-import 'package:movie_app/model/users/users.dart';
 
 class ApiService {
   static Future<List<Movie>> getNowPlayingMovie() async {
@@ -151,6 +149,22 @@ class ApiService {
               character: c['character']))
           .toList();
       return castList;
+    } catch (error, stacktrace) {
+      throw Exception(
+          'Exception accoured: $error with stacktrace: $stacktrace');
+    }
+  }
+
+  static Future<List<Movie>> searchMovie(String query) async {
+    final Dio _dio = Dio();
+    final String baseUrl = 'https://api.themoviedb.org/3';
+    final String apiKey = 'api_key=df6f3cc06fc84af97a0568c3bb8e44ce';
+    try {
+      final response = await _dio.get(
+          '$baseUrl/search/movie?$apiKey&query=$query&include_adult=false');
+      var movies = response.data['results'] as List;
+      List<Movie> movieList = movies.map((m) => Movie.fromJson(m)).toList();
+      return movieList;
     } catch (error, stacktrace) {
       throw Exception(
           'Exception accoured: $error with stacktrace: $stacktrace');

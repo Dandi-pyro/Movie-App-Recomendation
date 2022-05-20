@@ -26,7 +26,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
   void initState() {
     super.initState();
     Provider.of<DetailViewModel>(context, listen: false)
-        .getMovieDetail(widget.movie.id);
+        .getMovieDetail(widget.movie.id!);
   }
 
   bool getButton(int id, List movie) {
@@ -67,22 +67,31 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
   Widget _detailMovie(DetailViewModel viewModel) {
     return Stack(
       children: [
-        ClipPath(
-          child: ClipRRect(
-            child: CachedNetworkImage(
-              imageUrl:
-                  'https://image.tmdb.org/t/p/original/${viewModel.movieDetail!.backdropPath}',
-              height: MediaQuery.of(context).size.height / 3,
-              width: double.infinity,
-              fit: BoxFit.cover,
-              placeholder: (context, url) => CircularProgressIndicator(),
-            ),
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(30),
-              bottomRight: Radius.circular(30),
-            ),
-          ),
-        ),
+        viewModel.movieDetail!.backdropPath == 'null'
+            ? Container(
+                height: MediaQuery.of(context).size.height / 3,
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/images/noImage.png'),
+                        fit: BoxFit.cover)),
+              )
+            : ClipPath(
+                child: ClipRRect(
+                  child: CachedNetworkImage(
+                    imageUrl:
+                        'https://image.tmdb.org/t/p/original/${viewModel.movieDetail!.backdropPath}',
+                    height: MediaQuery.of(context).size.height / 3,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                  ),
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30),
+                  ),
+                ),
+              ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -225,40 +234,50 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                   ),
                   Container(
                     height: 150,
-                    child: ListView.separated(
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        Images image =
-                            viewModel.movieDetail!.movieImage.backdrops[index];
-                        return Container(
-                          child: Card(
-                            elevation: 3,
-                            borderOnForeground: true,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: CachedNetworkImage(
-                                imageUrl:
-                                    'https://image.tmdb.org/t/p/w500${image.imagePath}',
-                                fit: BoxFit.cover,
-                                placeholder: (context, url) => Center(
-                                  child: CircularProgressIndicator(),
+                    child: viewModel.movieDetail!.backdropPath == 'null'
+                        ? Container(
+                            height: MediaQuery.of(context).size.height / 3,
+                            width: double.infinity,
+                            decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                    image:
+                                        AssetImage('assets/images/noImage.png'),
+                                    fit: BoxFit.cover)),
+                          )
+                        : ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              Images image = viewModel
+                                  .movieDetail!.movieImage.backdrops![index];
+                              return Container(
+                                child: Card(
+                                  elevation: 3,
+                                  borderOnForeground: true,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: CachedNetworkImage(
+                                      imageUrl:
+                                          'https://image.tmdb.org/t/p/w500${image.imagePath}',
+                                      fit: BoxFit.cover,
+                                      placeholder: (context, url) => Center(
+                                        child: CircularProgressIndicator(),
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
+                              );
+                            },
+                            separatorBuilder: (context, index) =>
+                                const VerticalDivider(
+                              color: Colors.transparent,
+                              width: 5,
                             ),
+                            itemCount: viewModel
+                                .movieDetail!.movieImage.backdrops!.length,
                           ),
-                        );
-                      },
-                      separatorBuilder: (context, index) =>
-                          const VerticalDivider(
-                        color: Colors.transparent,
-                        width: 5,
-                      ),
-                      itemCount:
-                          viewModel.movieDetail!.movieImage.backdrops.length,
-                    ),
                   ),
                   SizedBox(height: 10),
                   Text(

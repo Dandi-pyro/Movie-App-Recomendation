@@ -157,19 +157,27 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                           height: 80,
                           width: 80,
                           decoration: BoxDecoration(shape: BoxShape.rectangle),
-                          child: ClipPath(
-                            child: ClipRRect(
-                              child: CachedNetworkImage(
-                                imageUrl:
-                                    'https://image.tmdb.org/t/p/original/${watchlistViewModel.watchlist[index].backdropPath}',
-                                height: MediaQuery.of(context).size.height / 3,
-                                width: double.infinity,
-                                fit: BoxFit.cover,
-                                placeholder: (context, url) =>
-                                    CircularProgressIndicator(),
-                              ),
-                            ),
-                          ),
+                          child: watchlistViewModel
+                                      .watchlist[index].backdropPath ==
+                                  null
+                              ? const Image(
+                                  image:
+                                      AssetImage('assets/images/noImage.png'))
+                              : ClipPath(
+                                  child: ClipRRect(
+                                    child: CachedNetworkImage(
+                                      imageUrl:
+                                          'https://image.tmdb.org/t/p/original/${watchlistViewModel.watchlist[index].backdropPath}',
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              3,
+                                      width: double.infinity,
+                                      fit: BoxFit.cover,
+                                      placeholder: (context, url) =>
+                                          CircularProgressIndicator(),
+                                    ),
+                                  ),
+                                ),
                         ),
                       ),
                       Container(
@@ -324,19 +332,26 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                           height: 80,
                           width: 80,
                           decoration: BoxDecoration(shape: BoxShape.rectangle),
-                          child: ClipPath(
-                            child: ClipRRect(
-                              child: CachedNetworkImage(
-                                imageUrl:
-                                    'https://image.tmdb.org/t/p/original/${droppedViewModel.dropped[index].backdropPath}',
-                                height: MediaQuery.of(context).size.height / 3,
-                                width: double.infinity,
-                                fit: BoxFit.cover,
-                                placeholder: (context, url) =>
-                                    CircularProgressIndicator(),
-                              ),
-                            ),
-                          ),
+                          child: droppedViewModel.dropped[index].backdropPath ==
+                                  null
+                              ? const Image(
+                                  image:
+                                      AssetImage('assets/images/noImage.png'))
+                              : ClipPath(
+                                  child: ClipRRect(
+                                    child: CachedNetworkImage(
+                                      imageUrl:
+                                          'https://image.tmdb.org/t/p/original/${droppedViewModel.dropped[index].backdropPath}',
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              3,
+                                      width: double.infinity,
+                                      fit: BoxFit.cover,
+                                      placeholder: (context, url) =>
+                                          CircularProgressIndicator(),
+                                    ),
+                                  ),
+                                ),
                         ),
                       ),
                       Container(
@@ -413,7 +428,10 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
   Widget finishWidget(FinishViewModel finishViewModel) {
     return finishViewModel.finish.isEmpty
         ? const Center(
-            child: Text('there are no movies you finished watching'),
+            child: Text(
+              'there are no movies you finished watching',
+              style: TextStyle(color: Colors.white),
+            ),
           )
         : ListView.separated(
             itemBuilder: (context, index) {
@@ -433,19 +451,26 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                           height: 80,
                           width: 80,
                           decoration: BoxDecoration(shape: BoxShape.rectangle),
-                          child: ClipPath(
-                            child: ClipRRect(
-                              child: CachedNetworkImage(
-                                imageUrl:
-                                    'https://image.tmdb.org/t/p/original/${finishViewModel.finish[index].backdropPath}',
-                                height: MediaQuery.of(context).size.height / 3,
-                                width: double.infinity,
-                                fit: BoxFit.cover,
-                                placeholder: (context, url) =>
-                                    CircularProgressIndicator(),
-                              ),
-                            ),
-                          ),
+                          child: finishViewModel.finish[index].backdropPath ==
+                                  null
+                              ? const Image(
+                                  image:
+                                      AssetImage('assets/images/noImage.png'))
+                              : ClipPath(
+                                  child: ClipRRect(
+                                    child: CachedNetworkImage(
+                                      imageUrl:
+                                          'https://image.tmdb.org/t/p/original/${finishViewModel.finish[index].backdropPath}',
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              3,
+                                      width: double.infinity,
+                                      fit: BoxFit.cover,
+                                      placeholder: (context, url) =>
+                                          CircularProgressIndicator(),
+                                    ),
+                                  ),
+                                ),
                         ),
                       ),
                       Container(

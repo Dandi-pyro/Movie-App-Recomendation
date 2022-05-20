@@ -20,15 +20,20 @@ class SearchViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  getMovies() async {
+  getMovies(String query) async {
     changeState(SearchViewState.loading);
     try {
-      final c = await ApiService.getPopularMovie();
+      final c = await ApiService.searchMovie(query);
       _movies = c;
+      print('data = ${_movies.length}');
       notifyListeners();
       changeState(SearchViewState.none);
     } catch (e) {
       changeState(SearchViewState.error);
     }
+    // final c = await ApiService.searchMovie(query);
+    // _movies = c;
+    // print('data = ${_movies.length}');
+    // notifyListeners();
   }
 }

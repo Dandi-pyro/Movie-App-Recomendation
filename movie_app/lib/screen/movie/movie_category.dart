@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/model/genre.dart';
 import 'package:movie_app/model/movie_model.dart';
@@ -170,7 +170,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                               Container(
                                 width: 100,
                                 child: Text(
-                                  movie.title.toUpperCase(),
+                                  movie.title!.toUpperCase(),
                                   style: const TextStyle(
                                       fontSize: 12,
                                       color: Colors.black45,
@@ -207,7 +207,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                                       color: Colors.yellow,
                                       size: 14,
                                     ),
-                                    Text(movie.voteAverage,
+                                    Text(movie.voteAverage!,
                                         style: TextStyle(
                                           color: Colors.black45,
                                         ))
